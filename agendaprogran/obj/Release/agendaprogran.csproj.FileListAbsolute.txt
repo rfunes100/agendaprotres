@@ -1,0 +1,6 @@
+C:\Users\rfune3\source\repos\agendaprogran\agendaprogran\obj\Release\agendaprogra.Formularios.Agendafrm.resources
+C:\Users\rfune3\source\repos\agendaprogran\agendaprogran\obj\Release\agendaprogra.Formularios.Menu.resources
+C:\Users\rfune3\source\repos\agendaprogran\agendaprogran\obj\Release\agendaprogra.Formularios.SplaschScreen.resources
+C:\Users\rfune3\source\repos\agendaprogran\agendaprogran\obj\Release\agendaprogran.Properties.Resources.resources
+C:\Users\rfune3\source\repos\agendaprogran\agendaprogran\obj\Release\agendaprogran.csproj.GenerateResource.cache
+C:\Users\rfune3\source\repos\agendaprogran\agendaprogran\obj\Release\agendaprogran.csproj.CoreCompileInputs.cache

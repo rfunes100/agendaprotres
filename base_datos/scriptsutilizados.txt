@@ -1,0 +1,171 @@
+
+create database agenda
+
+use agenda 
+
+create table contactos
+(
+ Idcontacto bigint  primary key  identity(1,1),
+ nombre varchar(20) not null, 
+ apellido varchar(20) not null 
+ 
+)
+
+create table correos
+(
+ idcorreo bigint  primary key  identity(1,1),
+ correo  varchar(1000) not null, 
+ contactoid bigint not null 
+  FOREIGN KEY (contactoid) REFERENCES contactos(Idcontacto)
+
+
+)
+
+create table telefonos
+(
+ idtelefono bigint  primary key  identity(1,1),
+ numero  varchar(20) not null, 
+ contactoid bigint not null 
+  FOREIGN KEY (contactoid) REFERENCES contactos(Idcontacto)
+
+
+)
+
+
+
+
+alter table contactos
+add fechaNacimiento date not null default getdate()
+
+
+alter table contactos
+add sexo varchar(10) not null default 'HOMBRE'
+
+
+
+select * from contactos
+
+
+select Idcontacto, nombre, apellido,sexo, fechaNacimiento  from contactos
+where 
+sexo=
+'MASCULINO'
+
+update contactos
+set 
+sexo = 'HOMBRE'
+where 
+sexo=
+'MASCULINO'
+
+
+delete from contactos
+where Idcontacto 
+= 1
+
+
+update contactos
+set nombre = 
+apellido = , 
+sexo = ,
+fechaNacimiento = 
+where 
+
+Idcontacto =
+
+
+
+insert into contactos
+
+select 'ritchie', 'funes',  '2022-10-10' , 'HOMBRE'
+
+
+select * from correos
+
+
+insert into correos
+select 'rfunes2@gmail.com', 6
+
+
+
+select * from telefonos
+
+
+
+insert into telefonos
+select '97090583', 3
+
+
+select * from contactos
+where sexo = 'HOMBRE'
+
+
+
+select * from contactos where sexo = 'HOMBRE'
+
+
+
+
+insert into telefonos
+select '32100002', 7
+
+
+
+select datepart(year, getdate()) - datepart(year, fechaNacimiento )
+
+ ,* from contactos
+ 
+ where 
+DATEPART(month, fechaNacimiento) =10
+
+
+select Idcontacto ,	nombre ,	apellido ,	fechaNacimiento ,	sexo ,	idcorreo ,	correo ,	contactoid from contactos con
+inner join correos cor on cor.contactoid = con.Idcontacto
+
+
+select max( Idcontacto) as Idcontacto , max( nombre) as  nombre, max( apellido) as apellido , max( fechaNacimiento ) as fechaNacimiento
+, max( sexo) as sexo ,
+ max(idcorreo) as idcorreo ,  correo , contactoid ,
+ ROW_NUMBER() OVER ( partition by contactoid  ORDER BY  contactoid asc ) AS rown
+ from contactos con inner join correos cor on cor.contactoid = con.Idcontacto
+
+group by contactoid , correo 
+order by Idcontacto asc
+
+
+
+
+select max( Idcontacto) as Idcontacto , max( nombre) as  nombre, max( apellido) as apellido , max( fechaNacimiento ) as fechaNacimiento
+, max( sexo) as sexo ,
+ max(idtelefono) as idtelefono , concat( SUBSTRING(numero,1,4), '-', SUBSTRING(numero,5,8) ) as numero , contactoid ,
+ ROW_NUMBER() OVER ( partition by contactoid  ORDER BY  contactoid asc ) AS rown
+ from contactos con inner join  telefonos cor on cor.contactoid = con.Idcontacto
+
+group by contactoid , numero 
+order by Idcontacto asc
+
+
+select * from telefonos
+where idtelefono
+= 1
+
+
+
+delete  from telefonos
+where idtelefono
+= 1
+
+
+select * from correos
+where 
+idcorreo
+= 1
+
+
+
+delete 
+from correos
+where 
+idcorreo
+= 1
+

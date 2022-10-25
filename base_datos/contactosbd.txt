@@ -1,0 +1,21 @@
+
+CREATE TABLE [dbo].[contactos](
+	[Idcontacto] [bigint] IDENTITY(1,1) NOT NULL,
+	[nombre] [varchar](20) NOT NULL,
+	[apellido] [varchar](20) NOT NULL,
+	[fechaNacimiento] [date] NOT NULL,
+	[sexo] [varchar](10) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Idcontacto] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[contactos] ADD  DEFAULT (getdate()) FOR [fechaNacimiento]
+GO
+
+ALTER TABLE [dbo].[contactos] ADD  DEFAULT ('MASCULINO') FOR [sexo]
+GO
+
+
