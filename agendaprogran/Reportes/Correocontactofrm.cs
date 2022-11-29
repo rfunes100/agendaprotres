@@ -29,9 +29,10 @@ namespace agendaprogran.Reportes
 
 
             string sqlstring =  " select max( Idcontacto) as Idcontacto , max( nombre) as  nombre , max( apellido) as apellido , max( fechaNacimiento ) as fechaNacimiento  "+
-                                             " , max( sexo) as sexo , max(idcorreo) as idcorreo ,  correo , contactoid , " +
+                                             " , max( sexo) as sexo , max(idcorreo) as idcorreo ,   concat( cor.correo, max( dom.dominio)  ) as correo  , contactoid , " +
                                              " ROW_NUMBER() OVER ( partition by contactoid  ORDER BY  contactoid asc ) AS rown "+
                                              " from contactos con inner join correos cor on cor.contactoid = con.Idcontacto " +
+                                             " inner join  dominio dom on dom.iddominio = cor.dominioid  " +
                                              " group by contactoid , correo " +
                                              " order by Idcontacto asc ";
             SqlDataAdapter da = new

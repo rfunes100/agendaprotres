@@ -21,7 +21,7 @@ namespace agendaprogran.Formularios
         public int id = 0;
         public int idcorreo = 0;
         public int idtelefono = 0;
-
+    
 
         public Agendafrm()
         {
@@ -30,7 +30,9 @@ namespace agendaprogran.Formularios
 
         private void refrescaragenda()
         {
-            var consulta = "select Idcontacto , nombre , apellido , sexo, fechaNacimiento  from contactos ";
+            var consulta = "select Idcontacto , nombre , apellido , sexo, fechaNacimiento, sobrenombre,  obseervacion, direccion, car.cargo, sec.sector  from contactos " +
+                          " inner join cargo car on car.idcargo =  cargoid "+
+                          " inner join sector sec on sec.idsector = sectoridcon ";
             SqlDataAdapter da = new SqlDataAdapter(consulta, conexiondbsql);
             DataSet ds = new DataSet();
             da.Fill(ds);
@@ -40,7 +42,10 @@ namespace agendaprogran.Formularios
 
         private void refrescorreos()
         {
-            var consulta = string.Format(" select idcorreo , correo from correos  where  contactoid = {0} ", id);
+            var consulta = string.Format(" select idcorreo , concat( correo, dom.dominio ) as correo , tipo.tipocorreo from correos corre " +
+                " inner join  tipocorreo tipo on tipo.idtipocorreo = corre. tipocorreoid " +
+                " inner join  dominio dom on dom.iddominio = corre. dominioid  " +
+                " where  contactoid = {0} ", id);
             SqlDataAdapter da = new SqlDataAdapter(consulta, conexiondbsql);
             DataSet ds = new DataSet();
             da.Fill(ds);
@@ -50,7 +55,10 @@ namespace agendaprogran.Formularios
 
         private void refrestelefonos()
         {
-            var consulta = string.Format(" select idtelefono,	numero from telefonos  where  contactoid = {0} ", id);
+            var consulta = string.Format(" select idtelefono,	numero , ope.operador, cat.categoria  from telefonos tel " +
+                " inner join operador ope on ope.idoperador = tel.operadorid "+
+                " inner join catggoria cat on cat.idcategoria = tel.categoriaid "+
+                "where  contactoid = {0} ", id);
             SqlDataAdapter da = new SqlDataAdapter(consulta, conexiondbsql);
             DataSet ds = new DataSet();
             da.Fill(ds);
@@ -65,15 +73,111 @@ namespace agendaprogran.Formularios
             rbtnhombre.Checked = false;
             rbtnfemenino.Checked = false;
             dtfechanacimiento.Text = "";
+            txtobservacion.Text = "";
+            txtdireccion.Text = "";
+            txtsobrenombre.Text = "";
+            cmbcargo.Text= "Seleccionar";
+      
 
+
+        }
+
+        private void cargaroperacion()
+        {
+
+            var consulta = string.Format(" select idcargo ,	cargo  from cargo ");
+            SqlDataAdapter da = new SqlDataAdapter(consulta, conexiondbsql);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            cmbcargo.DisplayMember = "cargo";
+            cmbcargo.ValueMember = "idcargo";
+            cmbcargo.DataSource = ds.Tables[0];
 
 
         }
 
 
+        private void cargarsector()
+        {
+
+            var consulta = string.Format(" select idsector ,	sector  from sector ");
+            SqlDataAdapter da = new SqlDataAdapter(consulta, conexiondbsql);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            cmbsector.DisplayMember = "sector";
+            cmbsector.ValueMember = "idsector";
+            cmbsector.DataSource = ds.Tables[0];
+
+
+        }
+
+        private void cargardominio()
+        {
+
+            var consulta = string.Format(" select iddominio , dominio from dominio ");
+            SqlDataAdapter da = new SqlDataAdapter(consulta, conexiondbsql);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            cmbdominio.DisplayMember = "dominio";
+            cmbdominio.ValueMember = "iddominio";
+            cmbdominio.DataSource = ds.Tables[0];
+
+
+        }
+
+        private void cargartipocorreo()
+        {
+
+            var consulta = string.Format(" select idtipocorreo, tipocorreo  from tipocorreo ");
+            SqlDataAdapter da = new SqlDataAdapter(consulta, conexiondbsql);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            cmbtipocorreo.DisplayMember = "tipocorreo";
+            cmbtipocorreo.ValueMember = "idtipocorreo";
+            cmbtipocorreo.DataSource = ds.Tables[0];
+
+
+        }
+
+        private void cargaroperador()
+        {
+
+            var consulta = string.Format(" select idoperador, operador  from operador ");
+            SqlDataAdapter da = new SqlDataAdapter(consulta, conexiondbsql);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            cmboperador.DisplayMember = "operador";
+            cmboperador.ValueMember = "idoperador";
+            cmboperador.DataSource = ds.Tables[0];
+
+
+        }
+
+
+        private void cargarcategoria()
+        {
+
+            var consulta = string.Format(" select idcategoria, categoria  from catggoria ");
+            SqlDataAdapter da = new SqlDataAdapter(consulta, conexiondbsql);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            cmbcategoria.DisplayMember = "categoria";
+            cmbcategoria.ValueMember = "idcategoria";
+            cmbcategoria.DataSource = ds.Tables[0];
+
+
+        }
+
         private void Agendafrm_Load(object sender, EventArgs e)
         {
+            this.cargaroperador();
+            this.cargarcategoria();
+            this.cargaroperacion();
+            this.cargartipocorreo();
+            this.cargardominio();
             this.refrescaragenda();
+            this.cargarsector();
+          
 
         }
 
@@ -84,18 +188,22 @@ namespace agendaprogran.Formularios
 
         private void btnagregar_Click(object sender, EventArgs e)
         {
-            if ( (txtnombre.Text == "" ) || txtapellido.Text == "" || dtfechanacimiento.Text == "" )
+            if ( txtnombre.Text == ""  || txtapellido.Text == "" || dtfechanacimiento.Text == "" || txtobservacion.Text == "" || txtsobrenombre.Text == "" || txtdireccion.Text == "" )
             {
                 MessageBox.Show("Se debe llenar los campos de nombre, apellido, fecha de nacimiento.");
             }
             else
             {
+     
 
-            
+
+
             SqlConnection conexion = new SqlConnection(conexiondbsql);
             conexion.Open();
-            sqlconsulta = string.Format(" insert into contactos (nombre, apellido, sexo, fechaNacimiento  ) values ( '{0}','{1}','{2}','{3}') "
-                , txtnombre.Text , txtapellido.Text, genero, dtfechanacimiento.Text);
+            sqlconsulta = string.Format(" insert into contactos (nombre, apellido, sexo, fechaNacimiento, obseervacion, sobrenombre, direccion, cargoid, sectoridcon  ) " +
+                " values ( '{0}','{1}','{2}','{3}','{4}','{5}','{6}', {7}, {8}) "
+                , txtnombre.Text , txtapellido.Text, genero, dtfechanacimiento.Text, txtobservacion.Text,
+                 txtsobrenombre.Text , txtdireccion.Text , cmbcargo.SelectedValue , cmbsector.SelectedValue);
             SqlCommand cmd = new SqlCommand(sqlconsulta, conexion);
             cmd.ExecuteNonQuery();
             this.limpiar();
@@ -125,7 +233,10 @@ namespace agendaprogran.Formularios
             int index = e.RowIndex;
             
             DataGridViewRow selectedrow = dgvcontactos.Rows[index];
+            if(!string.IsNullOrEmpty(selectedrow.Cells[0].Value.ToString() )   )
+            { 
             id = Convert.ToInt32( selectedrow.Cells[0].Value );
+            }
             txtnombre.Text = selectedrow.Cells[1].Value.ToString();
             txtapellido.Text = selectedrow.Cells[2].Value.ToString();
             genero = selectedrow.Cells[3].Value.ToString();
@@ -140,8 +251,16 @@ namespace agendaprogran.Formularios
             }
 
             dtfechanacimiento.Text = selectedrow.Cells[4].Value.ToString();
+            txtsobrenombre.Text = selectedrow.Cells[5].Value.ToString();
+            txtobservacion.Text = selectedrow.Cells[6].Value.ToString();
+            txtdireccion.Text = selectedrow.Cells[7].Value.ToString();
+
+            cmbcargo.Text = selectedrow.Cells[8].Value.ToString();
+            cmbsector.Text = selectedrow.Cells[9].Value.ToString();
+
             this.refrescorreos();
             this.refrestelefonos();
+
 
         }
 
@@ -184,11 +303,13 @@ namespace agendaprogran.Formularios
                 else
                 {
 
-                
-                SqlConnection conexion = new SqlConnection(conexiondbsql);
+                  //  cargoid = cmbcargo.SelectedValue
+                    SqlConnection conexion = new SqlConnection(conexiondbsql);
                 conexion.Open();
-                sqlconsulta = string.Format(" update contactos set nombre = '{0}', apellido = '{1}', sexo = '{2}',  fechaNacimiento ='{3}' where Idcontacto = '{4}'  "
-                  , txtnombre.Text, txtapellido.Text, genero, dtfechanacimiento.Text, id);
+                sqlconsulta = string.Format(" update contactos set nombre = '{0}', apellido = '{1}', sexo = '{2}',  fechaNacimiento ='{3}' , " +
+                " obseervacion ='{5}' , sobrenombre ='{6}' , direccion ='{7}' , cargoid = {8}  , sectoridcon = {9}   where Idcontacto = '{4}'  "
+                , txtnombre.Text, txtapellido.Text, genero, dtfechanacimiento.Text, id, txtobservacion.Text , txtsobrenombre.Text, txtdireccion.Text, cmbcargo.SelectedValue
+                , cmbsector.SelectedValue);
                 SqlCommand cmd = new SqlCommand(sqlconsulta, conexion);
                 cmd.ExecuteNonQuery();
                 this.refrescaragenda();
@@ -204,9 +325,9 @@ namespace agendaprogran.Formularios
 
         private void txtcorreo_Leave(object sender, EventArgs e)
         {
-            if (!this.txtcorreo.Text.Contains("@") || !this.txtcorreo.Text.Contains("."))
+            if (this.txtcorreo.Text.Contains("@") || this.txtcorreo.Text.Contains("."))
             {
-                MessageBox.Show("por favor ingrese correo valido debe llevar punto . y @ ", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("por favor no ingrese correo valido debe llevar punto . y @ ", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -224,8 +345,8 @@ namespace agendaprogran.Formularios
 
             SqlConnection conexion = new SqlConnection(conexiondbsql);
             conexion.Open();
-            sqlconsulta = string.Format(" insert into correos ( 	correo,	contactoid ) values ( '{0}',{1}) "
-                , txtcorreo.Text, id );
+            sqlconsulta = string.Format(" insert into correos ( 	correo,	contactoid ,tipocorreoid ,dominioid ) values ( '{0}',{1}, {2}, {3} ) "
+                , txtcorreo.Text, id, cmbtipocorreo.SelectedValue, cmbdominio.SelectedValue);
             SqlCommand cmd = new SqlCommand(sqlconsulta, conexion);
             cmd.ExecuteNonQuery();
             this.refrescorreos();
@@ -283,8 +404,8 @@ namespace agendaprogran.Formularios
 
                 SqlConnection conexion = new SqlConnection(conexiondbsql);
                 conexion.Open();
-                sqlconsulta = string.Format(" insert into telefonos ( 	numero ,	contactoid ) values ( '{0}',{1}) "
-                    , txttelefono.Text, id);
+                sqlconsulta = string.Format(" insert into telefonos ( 	numero ,	contactoid, operadorid, categoriaid  ) values ( '{0}',{1},{2},{3}) "
+                    , txttelefono.Text, id, cmboperador.SelectedValue, cmbcategoria.SelectedValue);
                 SqlCommand cmd = new SqlCommand(sqlconsulta, conexion);
                 cmd.ExecuteNonQuery();
                 this.refrestelefonos();
@@ -341,8 +462,10 @@ namespace agendaprogran.Formularios
             int index = e.RowIndex;
 
             DataGridViewRow selectedrow = dgvcorreos.Rows[index];
-            idcorreo = Convert.ToInt32(selectedrow.Cells[0].Value);
-          
+            if (!string.IsNullOrEmpty(selectedrow.Cells[0].Value.ToString()))
+            {
+                idcorreo = Convert.ToInt32(selectedrow.Cells[0].Value);
+            }
 
 
         }
@@ -351,9 +474,12 @@ namespace agendaprogran.Formularios
         {
             int index = e.RowIndex;
 
-            DataGridViewRow selectedrow = dgvtelefonos.Rows[index];
-            idtelefono = Convert.ToInt32(selectedrow.Cells[0].Value);
 
+            DataGridViewRow selectedrow = dgvtelefonos.Rows[index];
+            if (!string.IsNullOrEmpty(selectedrow.Cells[0].Value.ToString()))
+            {
+                idtelefono = Convert.ToInt32(selectedrow.Cells[0].Value);
+            }
 
         }
 

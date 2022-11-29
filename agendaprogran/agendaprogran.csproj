@@ -76,17 +76,71 @@
     <Compile Include="Formularios\Agendafrm.Designer.cs">
       <DependentUpon>Agendafrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Cargofrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Cargofrm.Designer.cs">
+      <DependentUpon>Cargofrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Categoriafrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Categoriafrm.Designer.cs">
+      <DependentUpon>Categoriafrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Departamentofrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Departamentofrm.Designer.cs">
+      <DependentUpon>Departamentofrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Dominiofrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Dominiofrm.Designer.cs">
+      <DependentUpon>Dominiofrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Menufrn.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Formularios\Menufrn.Designer.cs">
       <DependentUpon>Menufrn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Municipiofrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Municipiofrm.Designer.cs">
+      <DependentUpon>Municipiofrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Operadorfrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Operadorfrm.Designer.cs">
+      <DependentUpon>Operadorfrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Sectorfrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Sectorfrm.Designer.cs">
+      <DependentUpon>Sectorfrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\SplaschScreen.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Formularios\SplaschScreen.Designer.cs">
       <DependentUpon>SplaschScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\tipocorreofrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\tipocorreofrm.Designer.cs">
+      <DependentUpon>tipocorreofrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Tiposectorfrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Tiposectorfrm.Designer.cs">
+      <DependentUpon>Tiposectorfrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -153,11 +207,38 @@
     <EmbeddedResource Include="Formularios\Agendafrm.resx">
       <DependentUpon>Agendafrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Cargofrm.resx">
+      <DependentUpon>Cargofrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Categoriafrm.resx">
+      <DependentUpon>Categoriafrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Departamentofrm.resx">
+      <DependentUpon>Departamentofrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Dominiofrm.resx">
+      <DependentUpon>Dominiofrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Menufrn.resx">
       <DependentUpon>Menufrn.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Municipiofrm.resx">
+      <DependentUpon>Municipiofrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Operadorfrm.resx">
+      <DependentUpon>Operadorfrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Sectorfrm.resx">
+      <DependentUpon>Sectorfrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\SplaschScreen.resx">
       <DependentUpon>SplaschScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\tipocorreofrm.resx">
+      <DependentUpon>tipocorreofrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Tiposectorfrm.resx">
+      <DependentUpon>Tiposectorfrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

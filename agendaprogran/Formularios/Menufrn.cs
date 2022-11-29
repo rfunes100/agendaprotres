@@ -60,13 +60,7 @@ namespace agendaprogran.Formularios
 
         private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            saveFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
-            if (saveFileDialog.ShowDialog(this) == DialogResult.OK)
-            {
-                string FileName = saveFileDialog.FileName;
-            }
+
         }
 
         private void ExitToolsStripMenuItem_Click(object sender, EventArgs e)
@@ -177,6 +171,80 @@ namespace agendaprogran.Formularios
             Correocontactofrm hijoagenda = new Correocontactofrm();
             hijoagenda.MdiParent = this;
             hijoagenda.Show();
+
+        }
+
+        private void CargoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Cargofrm hijoagenda = new Cargofrm();
+            hijoagenda.MdiParent = this;
+            hijoagenda.Show();
+        }
+
+        private void deptoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Departamentofrm hijoagenda = new Departamentofrm();
+            hijoagenda.MdiParent = this;
+            hijoagenda.Show();
+
+        }
+
+        private void MunicipioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Municipiofrm hijoagenda = new Municipiofrm();
+            hijoagenda.MdiParent = this;
+            hijoagenda.Show();
+
+
+        }
+
+        private void tiposectorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Tiposectorfrm hijoagenda = new Tiposectorfrm();
+            hijoagenda.MdiParent = this;
+            hijoagenda.Show();
+        }
+
+        private void SectorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            Sectorfrm hijoagenda = new Sectorfrm();
+            hijoagenda.MdiParent = this;
+            hijoagenda.Show();
+
+            
+        }
+
+        private void DominioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Dominiofrm hijoagenda = new Dominiofrm();
+            hijoagenda.MdiParent = this;
+            hijoagenda.Show();
+        }
+
+        private void tipocorreoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tipocorreofrm hijoagenda = new tipocorreofrm();
+            hijoagenda.MdiParent = this;
+            hijoagenda.Show();
+        }
+
+        private void operadorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            Operadorfrm hijoagenda = new Operadorfrm();
+            hijoagenda.MdiParent = this;
+            hijoagenda.Show();
+            
+        }
+
+        private void categoriaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            Categoriafrm hijoagenda = new Categoriafrm();
+            hijoagenda.MdiParent = this;
+            hijoagenda.Show();
+
 
         }
     }

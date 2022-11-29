@@ -38,3 +38,12 @@ C:\Users\rfune3\source\repos\agendaprogran\agendaprogran\obj\Debug\agendaprogran
 C:\Users\rfune3\source\repos\agendaprogran\agendaprogran\obj\Debug\agendaprogran.Reportes.Correocontactofrm.resources
 C:\Users\rfune3\source\repos\agendaprogran\agendaprogran\obj\Debug\agendaprogran.Reportes.Telefonocontactofrm.resources
 C:\Users\rfune3\source\repos\agendaprogran\agendaprogran\obj\Debug\agendaprogran.Formularios.Agendafrm.resources
+C:\Users\rfune3\source\repos\agendaprogran\agendaprogran\obj\Debug\agendaprogran.Formularios.Cargofrm.resources
+C:\Users\rfune3\source\repos\agendaprogran\agendaprogran\obj\Debug\agendaprogran.Formularios.Departamentofrm.resources
+C:\Users\rfune3\source\repos\agendaprogran\agendaprogran\obj\Debug\agendaprogran.Formularios.Municipiofrm.resources
+C:\Users\rfune3\source\repos\agendaprogran\agendaprogran\obj\Debug\agendaprogran.Formularios.Tiposectorfrm.resources
+C:\Users\rfune3\source\repos\agendaprogran\agendaprogran\obj\Debug\agendaprogran.Formularios.Sectorfrm.resources
+C:\Users\rfune3\source\repos\agendaprogran\agendaprogran\obj\Debug\agendaprogran.Formularios.Dominiofrm.resources
+C:\Users\rfune3\source\repos\agendaprogran\agendaprogran\obj\Debug\agendaprogran.Formularios.tipocorreofrm.resources
+C:\Users\rfune3\source\repos\agendaprogran\agendaprogran\obj\Debug\agendaprogran.Formularios.Operadorfrm.resources
+C:\Users\rfune3\source\repos\agendaprogran\agendaprogran\obj\Debug\agendaprogran.Formularios.Categoriafrm.resources

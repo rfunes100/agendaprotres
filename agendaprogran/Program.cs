@@ -21,7 +21,7 @@ namespace agendaprogran
             Application.SetCompatibleTextRenderingDefault(false);
            Application.Run(new SplaschScreen());
             Application.Run(new Menufrn());
-        //   Application.Run(new Telefonocontactofrm());
+       //  Application.Run(new Cargofrm());
         }
     }
 }
